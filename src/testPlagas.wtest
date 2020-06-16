@@ -1,0 +1,36 @@
+import plagas.*
+import elementos.*
+
+describe "Test, funciones de Plagas" {
+	
+	const cucaracha = new Cucarachas(poblacion = 20, pesoPromedio = 10) 
+	
+	test "Cucarachas" {
+		
+		assert.equals(10,cucaracha.nivelDeDanio())
+		assert.that(cucaracha.trasmiteEnfermedad())
+		cucaracha.pesoPromedio(5)
+		assert.notThat(cucaracha.trasmiteEnfermedad())
+	}
+}
+
+describe "Test, Al ataque contra los elementos!" {
+	
+	const iris = new Mascota(nivelDeSalud = 300)
+	const cucarachas = new Cucarachas(poblacion = 20, pesoPromedio = 10) 
+	const garrapatas = new Garrapatas(poblacion = 10)
+	
+	test "Cucarachas contrá iris" {
+		
+		cucarachas.atacarElemento(iris)
+		assert.equals(22,cucarachas.poblacion())
+		assert.equals(12,cucarachas.pesoPromedio())
+		assert.equals(290,iris.nivelDeSalud())
+	}
+	
+	test "Garrapatas contrá iris" {
+		
+		garrapatas.atacarElemento(iris)
+		assert.equals(12,garrapatas.poblacion())
+	}
+}
